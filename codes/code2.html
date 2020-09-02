@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Code</title>
+    <style type="text/css">
+      
+      @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+html,body{
+  display: grid;
+  height: 100%;
+  place-items: center;
+}
+::selection {
+  color: #fff;
+  background: #18b495;
+}
+textarea{
+  padding: 8px;
+  font-size: 17px;
+  resize: none;
+  text-align: justify;
+  color: #202020;
+}
+textarea:focus{
+  outline-color: #16a085;
+  border-color: #16a085;
+}
+.btn{
+  margin: 5px 0 40px 0;
+}
+.btn button{
+  padding: 9px 15px;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: linear-gradient(#18b495,#16a085);
+  border: none;
+  color: #f2f2f2;
+  cursor: pointer;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  outline: none;
+}
+.btn .tooltip{
+  position: relative;
+  margin-left: -10px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #f2f2f2;
+  z-index: -1;
+  background: linear-gradient(#18b495,#16a085);
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s, margin-left 0.4s;
+}
+.btn .tooltip.show{
+  margin-left: 10px;
+  opacity: 1;
+  pointer-events: auto;
+}
+.tooltip:before{
+  content: '';
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background: linear-gradient(#18b495,#16a085);
+  top: 50%;
+  left: -5px;
+  z-index: -1;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- NOTE: Due to many textarea tag in the code I got error..So I wrote changeit tag..Replace this changeit tag with textarea tag -->
+      <textarea id="copyText" cols="80" rows="19">
+      	<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			background: blueviolet;
+		}
+
+		.container{
+			top: 50%;
+			left: 43%;
+			position: absolute;
+		}
+
+		.circle{
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			background: lightcoral;
+			border-radius: 50%;
+            animation: anim 1s linear infinite;
+		}
+
+		.circle:nth-child(2){
+			animation-delay: .2s;
+			background: goldenrod;
+		}
+
+		.circle:nth-child(3){
+			animation-delay: .4s;
+			background: greenyellow;
+		}
+
+		.circle:nth-child(4){
+			animation-delay: .6s;
+			background: orangered;
+		}
+
+		.circle:nth-child(5){
+			animation-delay: .8s;
+			background: lightsalmon;
+		}
+
+		@keyframes anim{
+			0%{
+				transform-origin: 400% 0%;
+				transform: rotate(0deg);
+			}
+
+			100%{
+				transform-origin: 400% 0%;
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="circle"></div>
+		<div class="circle"></div>
+		<div class="circle"></div>
+		<div class="circle"></div>
+		<div class="circle"></div>  
+	</div>
+</body>
+</html>
+      </textarea>
+      <br />
+<div class="btn">
+<button>copy in clipboard</button><span class="tooltip">copied</span></div>
+<!-- NOTE: Due to many textarea tag in the code I got error..So I wrote changeit tag..Replace this changeit tag with textarea tag -->
+<changeit cols="60" id="pasteText" placeholder="Paste your copied content here.." rows="5"></changeit>
+    
+    <script>
+      const copyText = document.querySelector("#copyText");
+      const pasteText = document.querySelector("#pasteText");
+      const button = document.querySelector("button");
+      const tooltip = document.querySelector(".tooltip");
+      button.addEventListener('click', function(){
+        copyText.select();
+        pasteText.value = "";
+        tooltip.classList.add("show");
+        setTimeout(function(){
+          tooltip.classList.remove("show");
+        },700);
+        if(document.execCommand("copy")){
+          pasteText.focus();
+        }else{
+          alert("Something went wrong!");
+        }
+      });
+    </script>
